@@ -1,0 +1,23 @@
+{
+  "name": "gitfunded-ens",
+  "version": "1.0.0",
+  "description": "ENS utils",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@ensdomains/buffer": "0.0.10",
+    "@ensdomains/dnssec-oracle": "^0.1.2",
+    "@ensdomains/ens": "^0.4.4",
+    "@ensdomains/resolver": "^0.2.4",
+    "web3": "^1.2.6",
+    "web3-utils": "^1.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test"
+  },
+  "author": "Koshik Raj",
+  "license": "MIT"
+}
