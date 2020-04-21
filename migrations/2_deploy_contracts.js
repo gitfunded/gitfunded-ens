@@ -1,5 +1,5 @@
 const ENSProxy = artifacts.require("ENSProxy");
-
+const keccak256 = require('js-sha3').keccak_256;
 
 // TODO: align the contract name with the source code file name.
 const web3 = new (require('web3'))();
@@ -25,13 +25,13 @@ function getRootNodeFromTLD(tld) {
 module.exports = async function(deployer, network) {
   var tld = 'eth';
   let subDomain = 'gitfunded';
-  var rootNode = getRootNodeFromTLD(subDomain);
+  var rootNode = '0x' + keccak256(subDomain);
     deployer.then(async () => {
 
         await deployer.deploy(ENSProxy).then(async (ens) => {
 
             console.log("ENS Registry address: ", ens.address);
-            await ens.deploySubdomainRegistrar(rootNode.namehash).then((tx)=>{console.log("Sub domain Registry deployed")});
+            await ens.deploySubdomainRegistrar(rootNode).then((tx)=>{console.log("Sub domain Registry deployed")});
 
         });
 
