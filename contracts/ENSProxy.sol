@@ -39,6 +39,7 @@ contract ENSProxy {
         bytes32 resolverNode = namehash(bytes32(0), RESOLVER_LABEL);
 
         ens.setSubnodeOwner(bytes32(0), RESOLVER_LABEL, address(this));
+        //ens.setSubnodeOwner(resolverNode,RESOLVER_LABEL, address(this));
         ens.setResolver(resolverNode, address(publicResolver));
         publicResolver.setAddr(resolverNode, address(publicResolver));
 
@@ -46,6 +47,19 @@ contract ENSProxy {
         fifsRegistrar = new FIFSRegistrar(ens, namehash(bytes32(0), TLD_LABEL));
 
         ens.setSubnodeOwner(bytes32(0), TLD_LABEL, address(fifsRegistrar));
+
+
+                // Setup .eth TLD
+        // ens.setSubnodeOwner(ENS_ROOT, ETH_TLD_LABEL, this);
+
+        // // Setup public resolver
+        // PublicResolver resolver = new PublicResolver(ens);
+        // ens.setSubnodeOwner(ETH_TLD_NODE, PUBLIC_RESOLVER_LABEL, this);
+        // ens.setResolver(PUBLIC_RESOLVER_NODE, resolver);
+        // resolver.setAddr(PUBLIC_RESOLVER_NODE, resolver);
+
+         // ens.setOwner(TLD_LABEL, owner);
+         // ens.setOwner(bytes32(0), owner);
 
     }
 
