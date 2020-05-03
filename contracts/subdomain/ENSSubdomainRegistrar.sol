@@ -37,8 +37,7 @@ contract ENSSubdomainRegistrar is  ENSConstants {
      constructor(ENSRegistry _ens) public {
         ens = _ens;
     }
-
-
+    
     function setRootNode(bytes32 _rootNode) public {
 
         // We need ownership to create subnodes
@@ -122,4 +121,9 @@ contract ENSSubdomainRegistrar is  ENSConstants {
     function getNodeForLabel(bytes32 _label) internal view returns (bytes32) {
         return keccak256(abi.encodePacked(rootNode, _label));
     }
+
+    function getOwner(bytes32 node) external view returns (address) {
+        return ens.owner(node);
+    }
+
 }
